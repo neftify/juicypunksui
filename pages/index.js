@@ -377,7 +377,7 @@ export default function Home() {
               The team behind the Juice.
             </h3>
             <p className="text-coolGray-500 text-lg font-medium md:text-xl">
-              We're Neftify Media, a sister company of Neftify.
+              We`&rsquo;re Neftify Media, a sister company of Neftify.
             </p>
           </div>
           <div className="-mx-4 flex flex-wrap">

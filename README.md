@@ -1,4 +1,3 @@
-NEFTIFY MEDIA
+Juicy Punks by Neftify Media
 
-Juicy Punks
-https://juicypunks.com/
+[https://juicypunks.com/](https://juicypunks.com/)
