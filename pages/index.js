@@ -1,6 +1,9 @@
+
 import Head from "next/head";
 import Link from "next/link";
+import React, { useState, useEffect } from 'react'
 import YouTube from "react-youtube";
+import ConnectWalletButton from "../components/connectWalletButton.js";
 
 export default function Home() {
   const opts = {
@@ -10,6 +13,45 @@ export default function Home() {
       autoplay: 1,
     },
   };
+
+  const [isConnected, setConnected] = useState(false);
+  const [address, setAddress] = useState(0);
+
+  const tryConnecting = () => {
+    try {
+      const resp = window.solana.connect();
+      setAddress(resp.publicKey.toString());
+      setConnected(true);
+
+      console.log(isConnected);
+      console.log(address);
+
+      // 26qv4GCcx98RihuK3c4T6ozB3J7L6VwCuFVc7Ta2A3Uo 
+    } catch (err) {
+      console.log(err)
+      // { code: 4001, message: 'User rejected the request.' }
+    }
+  }
+
+  // Auto connect to the cached provider
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      // Will either automatically connect to Phantom, or do nothing.
+window.solana.connect({ onlyIfTrusted: true })
+.then(({ publicKey }) => {
+    // Handle successful eager connection
+    setConnected(true);
+    setAddress(publicKey.toString());
+})
+.catch(() => {
+    // Handle connection failure as usual
+})
+    }, 1000);
+
+    return () => {
+      clearTimeout(identifier);
+    };
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -110,14 +152,7 @@ export default function Home() {
                 </ul>
               </div>
               <div className="w-1/2 xl:w-1/3">
-                <div className="hidden items-center justify-end xl:flex">
-                  <a
-                    className="text-violet-50 bg-violet-500 hover:bg-violet-600 focus:ring-violet-500 inline-block rounded-md py-2 px-4 text-sm font-medium leading-5 focus:ring-2 focus:ring-opacity-50"
-                    href="#"
-                  >
-                    Connect Wallet
-                  </a>
-                </div>
+
               </div>
             </div>
             <button className="navbar-burger self-center xl:hidden hidden">
@@ -207,15 +242,7 @@ export default function Home() {
                   unlocking new levels that can be minted as NFTs.
                 </p>
                 <div className="flex flex-wrap">
-                  <div className="w-full py-1 md:mr-4 md:w-auto md:py-0">
-                    <a
-                      className="bg-violet-500 hover:bg-violet-600 focus:ring-violet-500 border-violet-500 text-violet-50 inline-block w-full rounded-md border py-5 px-7 text-center text-base font-medium leading-4 shadow-sm focus:ring-2 focus:ring-opacity-50 md:text-lg"
-                      href="#"
-                    >
-                      Connect Wallet
-                    </a>
-                  </div>
-
+                  <ConnectWalletButton isConnected={isConnected} onClick={tryConnecting} address={address} />
                 </div>
               </div>
               <div className="w-full px-4 md:w-1/2">
@@ -231,6 +258,23 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section
+        className="bg-white py-20 xl:pt-24"
+        style={{
+          backgroundImage: 'url("/flex-ui-assets/elements/pattern-white.svg")',
+          backgroundPosition: "center",
+        }}
+      >
+      
+      {isConnected ? (
+          <iframe src="https://juicypunksunity-33del.ondigitalocean.app/" width="800" height="450"></iframe>
+        ) : (
+          <>
+          </>
+        )}
+      </section>
+      
       <section
         className="bg-white py-20 xl:pt-24"
         style={{
