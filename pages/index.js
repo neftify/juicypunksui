@@ -1,9 +1,16 @@
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import Link from "next/link";
+import YouTube from "react-youtube";
 
 export default function Home() {
+  const opts = {
+    height: "290",
+    width: "540",
+    playerVars: {
+      autoplay: 1,
+    },
+  };
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
@@ -286,20 +293,7 @@ export default function Home() {
           <div className="-mx-4 flex flex-wrap">
             <div className="mb-16 w-full px-4 md:mb-0 md:w-1/2">
               <div className="relative mx-auto max-w-max md:ml-0">
-                <img
-                  src="/flex-ui-assets/elements/circle3-green.svg"
-                  alt=""
-                  className="absolute -right-8 -top-8 z-10 w-28 md:w-auto"
-                />
-                <img
-                  className="absolute -left-10 -bottom-8 z-10 w-28 md:w-auto"
-                  src="flex-ui-assets/elements/dots3-yellow.svg"
-                  alt=""
-                />
-                <img
-                  src="flex-ui-assets/images/how-it-works/stock.png"
-                  alt=""
-                />
+              <YouTube videoId="1vvXf-7qhh8" opts={opts} />
               </div>
             </div>
             <div className="w-full px-4 md:w-1/2">
