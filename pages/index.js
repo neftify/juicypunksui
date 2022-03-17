@@ -215,6 +215,7 @@ export default function Home() {
                       Connect Wallet
                     </a>
                   </div>
+
                 </div>
               </div>
               <div className="w-full px-4 md:w-1/2">
