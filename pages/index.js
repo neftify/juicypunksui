@@ -18,6 +18,13 @@ export default function Home() {
   const [address, setAddress] = useState(0);
 
   const tryConnecting = () => {
+
+    if ("solana" in window) {
+    }
+    else {
+      window.open("https://phantom.app/", "_blank");
+    }
+
     try {
       const resp = window.solana.connect();
       setAddress(resp.publicKey.toString());
@@ -37,6 +44,8 @@ export default function Home() {
   useEffect(() => {
     const identifier = setTimeout(() => {
       // Will either automatically connect to Phantom, or do nothing.
+
+      if ("solana" in window) {
 window.solana.connect({ onlyIfTrusted: true })
 .then(({ publicKey }) => {
     // Handle successful eager connection
@@ -46,6 +55,8 @@ window.solana.connect({ onlyIfTrusted: true })
 .catch(() => {
     // Handle connection failure as usual
 })
+      }
+
     }, 1000);
 
     return () => {
@@ -715,7 +726,7 @@ window.solana.connect({ onlyIfTrusted: true })
           <div className="flex flex-wrap items-center py-12 md:pb-32">
             <div className="mb-6 w-full md:mb-0 md:w-1/2">
               <p className="text-coolGray-400 font-medium">
-                © 2021 Flex. All rights reserved.
+                © 2021 Neftify Media. All rights reserved.
               </p>
             </div>
             <div className="w-full md:w-1/2">
