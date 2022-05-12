@@ -33,7 +33,7 @@ export default function Home() {
       console.log(isConnected);
       console.log(address);
 
-      // 26qv4GCcx98RihuK3c4T6ozB3J7L6VwCuFVc7Ta2A3Uo 
+      // 26qv4GCcx98RihuK3c4T6ozB3J7L6VwCuFVc7Ta2A3Uo
     } catch (err) {
       console.log(err)
       // { code: 4001, message: 'User rejected the request.' }
@@ -277,7 +277,7 @@ window.solana.connect({ onlyIfTrusted: true })
           backgroundPosition: "center",
         }}
       >
-      
+
       {isConnected ? (
           <iframe src="https://juicypunksunity-33del.ondigitalocean.app/" width="800" height="450"></iframe>
         ) : (
@@ -285,7 +285,7 @@ window.solana.connect({ onlyIfTrusted: true })
           </>
         )}
       </section>
-      
+
       <section
         className="bg-white py-20 xl:pt-24"
         style={{
@@ -349,7 +349,7 @@ window.solana.connect({ onlyIfTrusted: true })
           <div className="-mx-4 flex flex-wrap">
             <div className="mb-16 w-full px-4 md:mb-0 md:w-1/2">
               <div className="relative mx-auto max-w-max md:ml-0">
-              <YouTube videoId="1vvXf-7qhh8" opts={opts} />
+              <YouTube className="max-w-full" videoId="1vvXf-7qhh8" opts={opts} />
               </div>
             </div>
             <div className="w-full px-4 md:w-1/2">
